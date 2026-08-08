@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SALOMON - BLACK & GOLD</title>
+<style>
+body{margin:0;background:#070707;color:white;font-family:Arial;text-align:center}
+header{padding:18px;border-bottom:1px solid #222;position:sticky;top:0;background:#080808}
+.logo{font-size:24px;font-weight:bold;letter-spacing:6px}
+main{max-width:900px;margin:auto;padding:25px 15px}
+.viewer{background:#000;border-radius:16px;overflow:hidden}
+.viewer img{width:100%;max-height:650px;object-fit:contain}
+button{padding:13px 20px;margin:6px;border-radius:9px;border:1px solid #555;background:#171717;color:white;font-weight:bold}
+.active,.buy{background:#d6a52c;color:#090909;border-color:#d6a52c}
+.price{font-size:28px;font-weight:bold}
+.sizes{display:flex;justify-content:center;flex-wrap:wrap}
+.order{display:none;background:#111;border:1px solid #333;padding:18px;margin:15px 0;border-radius:12px}
+.order.show{display:block}
+input{display:block;width:90%;max-width:400px;margin:8px auto;padding:12px;background:#171717;color:white;border:1px solid #444;border-radius:8px}
+</style>
+</head>
+<body>
+<header><div class="logo">SALOMON</div></header>
+<main>
+<h1>BLACK & GOLD</h1>
+<p>Elige el frente o la espalda de la camiseta.</p>
+
+<div class="viewer"><img id="shirt" src="camisa-salomon.png" alt="Camiseta SALOMON"></div>
+
+<div>
+<button id="front" class="active" onclick="side('front')">FRENTE</button>
+<button id="back" onclick="side('back')">ESPALDA</button>
+</div>
+
+<h2>Camiseta SALOMON</h2>
+<p class="price">$25</p>
+<p><b>Elige tu talla:</b></p>
+<div class="sizes">
+<button onclick="size(this,'S')">S</button>
+<button onclick="size(this,'M')">M</button>
+<button onclick="size(this,'L')">L</button>
+<button onclick="size(this,'XL')">XL</button>
+<button onclick="size(this,'XXL')">XXL</button>
+</div>
+
+<button class="buy" onclick="buy()">COMPRAR</button>
+
+<div id="order" class="order">
+<p id="chosen">Elige una talla.</p>
+<input id="name" placeholder="Tu nombre">
+<button class="buy" onclick="send()">PEDIR POR WHATSAPP</button>
+</div>
+</main>
+
+<script>
+let talla="";
+const whatsapp="50557349700";
+
+function side(x){
+ const img=document.getElementById("shirt");
+ img.src=x==="front"?"camisa-salomon.png":"camisa-salomon-1.png";
+ document.getElementById("front").classList.toggle("active",x==="front");
+ document.getElementById("back").classList.toggle("active",x==="back");
+}
+function size(b,x){
+ document.querySelectorAll(".sizes button").forEach(e=>e.classList.remove("active"));
+ b.classList.add("active"); talla=x;
+ document.getElementById("chosen").textContent="Talla seleccionada: "+x;
+}
+function buy(){
+ if(!talla){alert("Primero elige una talla.");return}
+ document.getElementById("order").classList.add("show");
+ document.getElementById("order").scrollIntoView({behavior:"smooth"});
+}
+function send(){
+ if(!talla){alert("Elige una talla.");return}
+ const nombre=document.getElementById("name").value.trim();
+ if(!nombre){alert("Escribe tu nombre.");return}
+ const mensaje="Hola, quiero comprar una camiseta SALOMON BLACK & GOLD.%0A%0ANombre: "+encodeURIComponent(nombre)+"%0ATalla: "+encodeURIComponent(talla)+"%0APrecio: $25";
+ window.open("https://wa.me/"+whatsapp+"?text="+mensaje,"_blank");
+}
+</script>
+</body>
+</html>
