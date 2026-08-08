@@ -3,78 +3,83 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SALOMON — Official</title>
+<title>SALOMON - BLACK & GOLD</title>
 <style>
-:root{--gold:#d6a52c;--bg:#070707;--card:#111;--muted:#aaa}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
-header{position:sticky;top:0;z-index:5;background:rgba(7,7,7,.92);backdrop-filter:blur(10px);border-bottom:1px solid #222}
-nav{max-width:1100px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:25px;letter-spacing:7px;font-weight:800;color:var(--gold)}
-nav a{color:#ddd;text-decoration:none;margin-left:24px;font-size:14px}
-.hero{min-height:82vh;max-width:1100px;margin:auto;padding:60px 22px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.kicker{color:var(--gold);letter-spacing:4px;font-size:12px;font-weight:bold}
-h1{font-size:clamp(55px,9vw,110px);line-height:.9;margin:16px 0;letter-spacing:5px}
-.tag{font-size:22px;color:#ddd;max-width:480px;line-height:1.5}
-.btn{display:inline-block;margin-top:24px;padding:15px 24px;background:var(--gold);color:#090909;text-decoration:none;font-weight:bold;letter-spacing:1px}
-.hero img{width:100%;max-height:620px;object-fit:contain;filter:drop-shadow(0 20px 35px #000)}
-section{max-width:1100px;margin:auto;padding:90px 22px}
-.title{font-size:38px;margin:0 0 10px}.line{width:55px;height:3px;background:var(--gold);margin:18px 0 35px}
-.product{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border:1px solid #242424}
-.product img{width:100%;height:600px;object-fit:contain}
-.info{padding:45px;display:flex;flex-direction:column;justify-content:center}
-.info h3{font-size:34px;margin:0 0 15px}.price{color:#aaa;font-size:14px}.sizes span{display:inline-block;border:1px solid #555;padding:10px 14px;margin:5px 5px 0 0}
-.about{max-width:700px;color:#bbb;line-height:1.8;font-size:17px}
-.contact{border:1px solid #292929;padding:40px;text-align:center}
-footer{text-align:center;padding:35px;color:#666;border-top:1px solid #222;font-size:12px}
-@media(max-width:750px){.hero,.product{grid-template-columns:1fr}.hero{padding-top:35px}.hero img{max-height:500px}.info{padding:30px}nav a{margin-left:10px}.navlinks{display:none}}
+body{margin:0;background:#070707;color:white;font-family:Arial;text-align:center}
+header{padding:18px;border-bottom:1px solid #222;position:sticky;top:0;background:#080808}
+.logo{font-size:24px;font-weight:bold;letter-spacing:6px}
+main{max-width:900px;margin:auto;padding:25px 15px}
+.viewer{background:#000;border-radius:16px;overflow:hidden}
+.viewer img{width:100%;max-height:650px;object-fit:contain}
+button{padding:13px 20px;margin:6px;border-radius:9px;border:1px solid #555;background:#171717;color:white;font-weight:bold}
+.active,.buy{background:#d6a52c;color:#090909;border-color:#d6a52c}
+.price{font-size:28px;font-weight:bold}
+.sizes{display:flex;justify-content:center;flex-wrap:wrap}
+.order{display:none;background:#111;border:1px solid #333;padding:18px;margin:15px 0;border-radius:12px}
+.order.show{display:block}
+input{display:block;width:90%;max-width:400px;margin:8px auto;padding:12px;background:#171717;color:white;border:1px solid #444;border-radius:8px}
 </style>
 </head>
 <body>
-<header><nav>
-<div class="logo">SALOMON</div>
-<div class="navlinks"><a href="#coleccion">COLECCIÓN</a><a href="#historia">HISTORIA</a><a href="#contacto">CONTACTO</a></div>
-</nav></header>
-
+<header><div class="logo">SALOMON</div></header>
 <main>
-<section class="hero">
+<h1>BLACK & GOLD</h1>
+<p>Elige el frente o la espalda de la camiseta.</p>
+
+<div class="viewer"><img id="shirt" src="camisa-salomon.png" alt="Camiseta SALOMON"></div>
+
 <div>
-<div class="kicker">FIRST DROP · 2026</div>
-<h1>SALOMON</h1>
-<p class="tag">Más que un nombre. Una identidad. Negro, dorado y una actitud que habla por sí sola.</p>
-<a class="btn" href="#coleccion">VER COLECCIÓN</a>
+<button id="front" class="active" onclick="side('front')">FRENTE</button>
+<button id="back" onclick="side('back')">ESPALDA</button>
 </div>
-<img src="camisa-salomon-1.png" alt="Nueva camisa SALOMON"> negra con detalles dorados">
-</section>
 
-<section id="coleccion">
-<h2 class="title">FIRST DROP</h2><div class="line"></div>
-<div class="product">
-<img src="camisa-salomon.png" alt="Camisa SALOMON">
-<div class="info">
-<div class="kicker">BLACK & GOLD</div>
-<h3>Camisa SALOMON</h3>
-<p>Diseño negro con detalles dorados. El precio se anunciará próximamente.</p>
-<p class="price">PRECIO: PRÓXIMAMENTE</p>
-<div class="sizes"><strong>TALLAS</strong><br><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-<a class="btn" href="#contacto">QUIERO LA MÍA</a>
+<h2>Camiseta SALOMON</h2>
+<p class="price">$25</p>
+<p><b>Elige tu talla:</b></p>
+<div class="sizes">
+<button onclick="size(this,'S')">S</button>
+<button onclick="size(this,'M')">M</button>
+<button onclick="size(this,'L')">L</button>
+<button onclick="size(this,'XL')">XL</button>
+<button onclick="size(this,'XXL')">XXL</button>
 </div>
-</div>
-</section>
 
-<section id="historia">
-<h2 class="title">SOBRE SALOMON</h2><div class="line"></div>
-<p class="about">SALOMON nace de una idea personal: convertir un nombre importante en una identidad que pueda llevarse puesta. Esta página es el comienzo; aquí iremos construyendo la historia, los diseños y las próximas colecciones.</p>
-</section>
+<button class="buy" onclick="buy()">COMPRAR</button>
 
-<section id="contacto">
-<div class="contact">
-<h2 class="title">¿LISTO PARA EL FIRST DROP?</h2>
-<p>Pedidos y novedades próximamente.</p>
-<p style="color:#777">Instagram · WhatsApp · DM</p>
+<div id="order" class="order">
+<p id="chosen">Elige una talla.</p>
+<input id="name" placeholder="Tu nombre">
+<button class="buy" onclick="send()">PEDIR POR WHATSAPP</button>
 </div>
-</section>
 </main>
-<footer>SALOMON · FIRST DROP · 2026</footer>
+
+<script>
+let talla="";
+const whatsapp="50557349700";
+
+function side(x){
+ const img=document.getElementById("shirt");
+ img.src=x==="front"?"camisa-salomon.png":"camisa-salomon-1.png";
+ document.getElementById("front").classList.toggle("active",x==="front");
+ document.getElementById("back").classList.toggle("active",x==="back");
+}
+function size(b,x){
+ document.querySelectorAll(".sizes button").forEach(e=>e.classList.remove("active"));
+ b.classList.add("active"); talla=x;
+ document.getElementById("chosen").textContent="Talla seleccionada: "+x;
+}
+function buy(){
+ if(!talla){alert("Primero elige una talla.");return}
+ document.getElementById("order").classList.add("show");
+ document.getElementById("order").scrollIntoView({behavior:"smooth"});
+}
+function send(){
+ if(!talla){alert("Elige una talla.");return}
+ const nombre=document.getElementById("name").value.trim();
+ if(!nombre){alert("Escribe tu nombre.");return}
+ const mensaje="Hola, quiero comprar una camiseta SALOMON BLACK & GOLD.%0A%0ANombre: "+encodeURIComponent(nombre)+"%0ATalla: "+encodeURIComponent(talla)+"%0APrecio: $25";
+ window.open("https://wa.me/"+whatsapp+"?text="+mensaje,"_blank");
+}
+</script>
 </body>
 </html>
