@@ -236,3 +236,113 @@ function side(x){
     .getElementById("front")
     .classList.toggle("active",x==="front");
 
+  document
+    .getElementById("back")
+    .classList.toggle("active",x==="back");
+}
+
+function size(b,x){
+
+  document
+    .querySelectorAll(".sizes button")
+    .forEach(e=>e.classList.remove("active"));
+
+  b.classList.add("active");
+
+  talla=x;
+
+  document.getElementById("chosen").textContent =
+    "Talla seleccionada: "+x;
+}
+
+function buy(){
+
+  if(!talla){
+    alert("Primero elige una talla.");
+    return;
+  }
+
+  document.getElementById("cart").classList.add("show");
+
+  document
+    .getElementById("cart")
+    .scrollIntoView({behavior:"smooth"});
+}
+
+function changeQuantity(change){
+
+  quantity += change;
+
+  if(quantity < 1){
+    quantity=1;
+  }
+
+  if(quantity > 20){
+    quantity=20;
+  }
+
+  document.getElementById("quantity").textContent=quantity;
+
+  document.getElementById("quantityText").textContent=quantity;
+
+  document.getElementById("total").textContent =
+    quantity * price;
+}
+
+function send(){
+
+  if(!talla){
+    alert("Elige una talla.");
+    return;
+  }
+
+  const nombre =
+    document.getElementById("name").value.trim();
+
+  if(!nombre){
+    alert("Escribe tu nombre.");
+    return;
+  }
+
+  const payment =
+    document.querySelector('input[name="payment"]:checked');
+
+  if(!payment){
+    alert("Elige una forma de pago.");
+    return;
+  }
+
+  const total=quantity * price;
+
+  const mensaje =
+    "Hola, quiero comprar "+
+    quantity+
+    " camiseta"+
+    (quantity > 1 ? "s" : "")+
+    " SALOMON BLACK y GOLD (frente y espalda)."+
+    "%0A%0A"+
+    "Nombre: "+
+    encodeURIComponent(nombre)+
+    "%0A"+
+    "Talla: "+
+    encodeURIComponent(talla)+
+    "%0A"+
+    "Cantidad: "+
+    quantity+
+    "%0A"+
+    "Forma de pago: "+
+    encodeURIComponent(payment.value)+
+    "%0A"+
+    "Total: $"+
+    total;
+
+  window.open(
+    "https://wa.me/"+whatsapp+"?text="+mensaje,
+    "_blank"
+  );
+}
+
+</script>
+
+</body>
+</html>
