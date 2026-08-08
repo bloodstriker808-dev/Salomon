@@ -77,7 +77,7 @@ function send(){
  if(!talla){alert("Elige una talla.");return}
  const nombre=document.getElementById("name").value.trim();
  if(!nombre){alert("Escribe tu nombre.");return}
- const mensaje="Hola, quiero comprar 1 SOLA camiseta SALOMON BLACK & GOLD (frente y espalda).%0A%0ANombre: "+encodeURIComponent(nombre)+"%0ATalla: "+encodeURIComponent(talla)+"%0APrecio: $25";
+ const mensaje="Hola, quiero comprar 1 SOLA camiseta SALOMON BLACK y GOLD (frente y espalda).%0A%0ANombre: "+encodeURIComponent(nombre)+"%0ATalla: "+encodeURIComponent(talla)+"%0APrecio: $25";
  window.open("https://wa.me/"+whatsapp+"?text="+mensaje,"_blank");
 }
 </script>
