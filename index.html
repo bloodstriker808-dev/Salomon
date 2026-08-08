@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SALOMON — Official</title>
+<style>
+:root{--gold:#d6a52c;--bg:#070707;--card:#111;--muted:#aaa}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:5;background:rgba(7,7,7,.92);backdrop-filter:blur(10px);border-bottom:1px solid #222}
+nav{max-width:1100px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:25px;letter-spacing:7px;font-weight:800;color:var(--gold)}
+nav a{color:#ddd;text-decoration:none;margin-left:24px;font-size:14px}
+.hero{min-height:82vh;max-width:1100px;margin:auto;padding:60px 22px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.kicker{color:var(--gold);letter-spacing:4px;font-size:12px;font-weight:bold}
+h1{font-size:clamp(55px,9vw,110px);line-height:.9;margin:16px 0;letter-spacing:5px}
+.tag{font-size:22px;color:#ddd;max-width:480px;line-height:1.5}
+.btn{display:inline-block;margin-top:24px;padding:15px 24px;background:var(--gold);color:#090909;text-decoration:none;font-weight:bold;letter-spacing:1px}
+.hero img{width:100%;max-height:620px;object-fit:contain;filter:drop-shadow(0 20px 35px #000)}
+section{max-width:1100px;margin:auto;padding:90px 22px}
+.title{font-size:38px;margin:0 0 10px}.line{width:55px;height:3px;background:var(--gold);margin:18px 0 35px}
+.product{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border:1px solid #242424}
+.product img{width:100%;height:600px;object-fit:contain}
+.info{padding:45px;display:flex;flex-direction:column;justify-content:center}
+.info h3{font-size:34px;margin:0 0 15px}.price{color:#aaa;font-size:14px}.sizes span{display:inline-block;border:1px solid #555;padding:10px 14px;margin:5px 5px 0 0}
+.about{max-width:700px;color:#bbb;line-height:1.8;font-size:17px}
+.contact{border:1px solid #292929;padding:40px;text-align:center}
+footer{text-align:center;padding:35px;color:#666;border-top:1px solid #222;font-size:12px}
+@media(max-width:750px){.hero,.product{grid-template-columns:1fr}.hero{padding-top:35px}.hero img{max-height:500px}.info{padding:30px}nav a{margin-left:10px}.navlinks{display:none}}
+</style>
+</head>
+<body>
+<header><nav>
+<div class="logo">SALOMON</div>
+<div class="navlinks"><a href="#coleccion">COLECCIÓN</a><a href="#historia">HISTORIA</a><a href="#contacto">CONTACTO</a></div>
+</nav></header>
+
+<main>
+<section class="hero">
+<div>
+<div class="kicker">FIRST DROP · 2026</div>
+<h1>SALOMON</h1>
+<p class="tag">Más que un nombre. Una identidad. Negro, dorado y una actitud que habla por sí sola.</p>
+<a class="btn" href="#coleccion">VER COLECCIÓN</a>
+</div>
+<img src="camisa-salomon.png" alt="Camisa SALOMON negra con detalles dorados">
+</section>
+
+<section id="coleccion">
+<h2 class="title">FIRST DROP</h2><div class="line"></div>
+<div class="product">
+<img src="camisa-salomon.png" alt="Camisa SALOMON">
+<div class="info">
+<div class="kicker">BLACK & GOLD</div>
+<h3>Camisa SALOMON</h3>
+<p>Diseño negro con detalles dorados. El precio se anunciará próximamente.</p>
+<p class="price">PRECIO: PRÓXIMAMENTE</p>
+<div class="sizes"><strong>TALLAS</strong><br><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+<a class="btn" href="#contacto">QUIERO LA MÍA</a>
+</div>
+</div>
+</section>
+
+<section id="historia">
+<h2 class="title">SOBRE SALOMON</h2><div class="line"></div>
+<p class="about">SALOMON nace de una idea personal: convertir un nombre importante en una identidad que pueda llevarse puesta. Esta página es el comienzo; aquí iremos construyendo la historia, los diseños y las próximas colecciones.</p>
+</section>
+
+<section id="contacto">
+<div class="contact">
+<h2 class="title">¿LISTO PARA EL FIRST DROP?</h2>
+<p>Pedidos y novedades próximamente.</p>
+<p style="color:#777">Instagram · WhatsApp · DM</p>
+</div>
+</section>
+</main>
+<footer>SALOMON · FIRST DROP · 2026</footer>
+</body>
+</html>
