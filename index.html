@@ -126,4 +126,13 @@ function send(){
   if(!nombre){alert("Escribe tu nombre.");return}
 
   const mensaje="Hola, quiero comprar una "+camisetas[camisa].nombre+
-  
+    ".%0A%0ANombre: "+encodeURIComponent(nombre)+
+  "%0ATalla: "+encodeURIComponent(talla)+
+  "%0APrecio: $25";
+
+  window.open("https://wa.me/"+whatsapp+"?text="+mensaje,"_blank");
+}
+</script>
+
+</body>
+</html>
