@@ -4,195 +4,1005 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SALOMON - CAMISETAS</title>
+
 <style>
-body{margin:0;background:#070707;color:white;font-family:Arial;text-align:center}
-header{padding:18px;border-bottom:1px solid #222;background:#080808;position:sticky;top:0}
-.logo{font-size:24px;font-weight:bold;letter-spacing:6px}
-main{max-width:900px;margin:auto;padding:25px 15px}
-.viewer{background:#000;border-radius:16px;overflow:hidden}
-.viewer img{width:100%;max-height:650px;object-fit:contain}
-button{padding:13px 20px;margin:6px;border-radius:9px;border:1px solid #555;background:#171717;color:white;font-weight:bold}
-.active,.buy{background:#d6a52c;color:#090909;border-color:#d6a52c}
-.price{font-size:28px;font-weight:bold}
-.sizes{display:flex;justify-content:center;flex-wrap:wrap}
-.cart{display:none;background:#111;border:1px solid #333;padding:18px;margin-top:20px;border-radius:12px}
-.cart.show{display:block}
-.quantity{display:flex;justify-content:center;align-items:center;gap:15px;margin:20px}
-.quantity button{width:50px;font-size:22px}
-#quantity{font-size:22px;font-weight:bold}
-input{display:block;width:90%;max-width:400px;margin:10px auto;padding:12px;background:#171717;color:white;border:1px solid #444;border-radius:8px;box-sizing:border-box}
-.payment{margin:15px 0}
-.payment label{display:block;background:#171717;padding:12px;margin:8px auto;max-width:300px;border-radius:8px}
-.payment label input{display:inline;width:auto;margin:0 8px 0 0;padding:0}
-.total{font-size:22px;font-weight:bold}
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+background:#070707;
+color:white;
+font-family:Arial,sans-serif;
+text-align:center;
+}
+
+header{
+padding:18px;
+border-bottom:1px solid #222;
+background:#080808;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+letter-spacing:6px;
+}
+
+main{
+max-width:900px;
+margin:auto;
+padding:25px 15px 50px;
+}
+
+.viewer{
+background:#000;
+border-radius:16px;
+overflow:hidden;
+height:560px;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:20px auto;
+}
+
+.viewer img{
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
+}
+
+button{
+padding:13px 20px;
+margin:6px;
+border-radius:9px;
+border:1px solid #555;
+background:#171717;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.active,
+.buy{
+background:#d6a52c;
+color:#090909;
+border-color:#d6a52c;
+}
+
+.price{
+font-size:28px;
+font-weight:bold;
+}
+
+.currency{
+margin:20px auto;
+}
+
+.currency-title{
+font-size:18px;
+font-weight:bold;
+}
+
+.currency-buttons{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.currency-buttons button{
+min-width:160px;
+}
+
+.sizes{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.cart{
+display:none;
+background:#111;
+border:1px solid #333;
+padding:18px;
+margin-top:20px;
+border-radius:12px;
+}
+
+.cart.show{
+display:block;
+}
+
+.quantity{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+margin:20px;
+}
+
+.quantity button{
+width:50px;
+font-size:22px;
+}
+
+#quantity{
+font-size:22px;
+font-weight:bold;
+}
+
+input{
+display:block;
+width:90%;
+max-width:400px;
+margin:10px auto;
+padding:12px;
+background:#171717;
+color:white;
+border:1px solid #444;
+border-radius:8px;
+}
+
+.payment{
+margin:15px 0;
+}
+
+.payment label{
+display:block;
+background:#171717;
+padding:12px;
+margin:8px auto;
+max-width:300px;
+border-radius:8px;
+}
+
+.payment label input{
+display:inline;
+width:auto;
+margin:0 8px 0 0;
+padding:0;
+}
+
+.total{
+font-size:22px;
+font-weight:bold;
+}
+
+@media(max-width:600px){
+
+.viewer{
+height:430px;
+}
+
+}
+
 </style>
 </head>
+
+
 <body>
 
-<header><div class="logo">SALOMON</div></header>
+
+<header>
+
+<div class="logo">
+SALOMON
+</div>
+
+</header>
+
 
 <main>
-<h1 id="title">CAMISETA 1</h1>
-<p>Elige una camiseta y mira el frente y la espalda antes de comprar.</p>
+
+
+<h1 id="title">
+CAMISETA 1
+</h1>
+
+
+<p>
+Elige una camiseta y mira el frente y la espalda antes de comprar.
+</p>
+
+
+<!-- CAMISETAS -->
 
 <div>
-<button id="shirt1" class="active" onclick="shirt(1)">CAMISA 1</button>
-<button id="shirt2" onclick="shirt(2)">CAMISA 2</button>
+
+<button
+id="shirt1"
+class="active"
+onclick="shirt(1)">
+
+CAMISA 1
+
+</button>
+
+<button
+id="shirt2"
+onclick="shirt(2)">
+
+CAMISA 2
+
+</button>
+
 </div>
+
+
+<!-- IMAGEN -->
 
 <div class="viewer">
-<img id="shirtImage" src="camisa1-frente.png" alt="Camiseta SALOMON">
+
+<img
+id="shirtImage"
+alt="Camiseta SALOMON">
+
 </div>
+
+
+<!-- FRENTE / ESPALDA -->
 
 <div>
-<button id="front" class="active" onclick="side('front')">FRENTE</button>
-<button id="back" onclick="side('back')">ESPALDA</button>
+
+<button
+id="front"
+class="active"
+onclick="side('front')">
+
+FRENTE
+
+</button>
+
+<button
+id="back"
+onclick="side('back')">
+
+ESPALDA
+
+</button>
+
 </div>
 
-<h2 id="productName">Camiseta SALOMON 1</h2>
-<p class="price">$25 por camiseta</p>
 
-<p><b>Elige tu talla:</b></p>
+<h2 id="productName">
+Camiseta SALOMON 1
+</h2>
+
+
+<!-- PRECIO -->
+
+<p class="price" id="price">
+$10
+</p>
+
+
+<!-- MONEDA -->
+
+<div class="currency">
+
+<p class="currency-title">
+Elige tu moneda:
+</p>
+
+
+<div class="currency-buttons">
+
+<button
+id="dollars"
+class="active"
+onclick="changeCurrency('USD')">
+
+🇺🇸 DÓLARES ($10)
+
+</button>
+
+
+<button
+id="cordobas"
+onclick="changeCurrency('NIO')">
+
+🇳🇮 CÓRDOBAS (C$370)
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- TALLAS -->
+
+<p>
+<b>Elige tu talla:</b>
+</p>
+
+
 <div class="sizes">
-<button onclick="size(this,'S')">S</button>
-<button onclick="size(this,'M')">M</button>
-<button onclick="size(this,'L')">L</button>
-<button onclick="size(this,'XL')">XL</button>
-<button onclick="size(this,'XXL')">XXL</button>
+
+<button onclick="size(this,'S')">
+S
+</button>
+
+<button onclick="size(this,'M')">
+M
+</button>
+
+<button onclick="size(this,'L')">
+L
+</button>
+
+<button onclick="size(this,'XL')">
+XL
+</button>
+
+<button onclick="size(this,'XXL')">
+XXL
+</button>
+
 </div>
 
-<button class="buy" onclick="openCart()">COMPRAR</button>
 
-<div id="cart" class="cart">
-<h2>Carrito</h2>
-<p id="chosen">Talla: No seleccionada</p>
+<br>
 
-<h3>Cantidad</h3>
+
+<button
+class="buy"
+onclick="openCart()">
+
+COMPRAR
+
+</button>
+
+
+<!-- CARRITO -->
+
+<div
+id="cart"
+class="cart">
+
+
+<h2>
+Carrito
+</h2>
+
+
+<p id="chosen">
+Talla: No seleccionada
+</p>
+
+
+<p id="currencyChosen">
+Moneda: Dólares
+</p>
+
+
+<h3>
+Cantidad
+</h3>
+
+
 <div class="quantity">
-<button onclick="changeQuantity(-1)">-</button>
-<span id="quantity">1</span>
-<button onclick="changeQuantity(1)">+</button>
+
+<button onclick="changeQuantity(-1)">
+-
+</button>
+
+
+<span id="quantity">
+1
+</span>
+
+
+<button onclick="changeQuantity(1)">
++
+</button>
+
 </div>
 
-<p>Cantidad de camisetas: <b id="quantityText">1</b></p>
-<p class="total">Total: $<span id="total">25</span></p>
 
-<input id="name" placeholder="Tu nombre">
+<p>
+Cantidad de camisetas:
+<b id="quantityText">
+1
+</b>
+</p>
 
-<h3>Forma de pago</h3>
+
+<p class="total">
+
+Total:
+
+<span id="total">
+$10
+</span>
+
+</p>
+
+
+<input
+id="name"
+placeholder="Tu nombre">
+
+
+<h3>
+Forma de pago
+</h3>
+
+
 <div class="payment">
-<label><input type="radio" name="payment" value="Efectivo">Efectivo</label>
-<label><input type="radio" name="payment" value="Transferencia">Transferencia</label>
+
+
+<label>
+
+<input
+type="radio"
+name="payment"
+value="Efectivo">
+
+Efectivo
+
+</label>
+
+
+<label>
+
+<input
+type="radio"
+name="payment"
+value="Transferencia">
+
+Transferencia
+
+</label>
+
+
 </div>
 
-<button class="buy" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
+
+<button
+class="buy"
+onclick="sendOrder()">
+
+PEDIR POR WHATSAPP
+
+</button>
+
+
 </div>
+
+
 </main>
 
-<script>
-let talla="";
-let quantity=1;
-let camisa=1;
-let lado="front";
-const price=25;
-const whatsapp="50557349700";
 
-const camisetas={
-  1:{
-    nombre:"Camiseta SALOMON 1",
-    frente:"camisa1-frente.png",
-    espalda:"camisa1-espalda.png"
-  },
-  2:{
-    nombre:"Camiseta SALOMON 2",
-    frente:"camisa2-frente.png",
-    espalda:"camisa2-espalda.png"
-  }
+
+<script>
+
+
+/* ==========================
+   VARIABLES
+========================== */
+
+let talla = "";
+
+let quantity = 1;
+
+let camisa = 1;
+
+let lado = "front";
+
+let moneda = "USD";
+
+
+const priceUSD = 10;
+
+const priceNIO = 370;
+
+
+const whatsapp = "50557349700";
+
+
+/* ==========================
+   IMÁGENES
+========================== */
+
+const camisetas = {
+
+1:{
+
+nombre:"Camiseta SALOMON 1",
+
+frente:"camisa1-frente.png",
+
+espalda:"camisa1-espalda.png"
+
+},
+
+2:{
+
+nombre:"Camiseta SALOMON 2",
+
+frente:"camisa2-frente.png",
+
+espalda:"camisa2-espalda.png"
+
+}
+
 };
 
-function shirt(x){
-  camisa=x;
-  lado="front";
 
-  document.getElementById("shirt1").classList.toggle("active",x===1);
-  document.getElementById("shirt2").classList.toggle("active",x===2);
+/* ==========================
+   PRECIO
+========================== */
 
-  document.getElementById("title").textContent="CAMISETA "+x;
-  document.getElementById("productName").textContent=camisetas[x].nombre;
+function getPrice(){
 
-  document.getElementById("front").classList.add("active");
-  document.getElementById("back").classList.remove("active");
+if(moneda === "USD"){
 
-  document.getElementById("shirtImage").src=camisetas[x].frente;
+return priceUSD;
+
 }
+
+return priceNIO;
+
+}
+
+
+function getCurrencySymbol(){
+
+if(moneda === "USD"){
+
+return "$";
+
+}
+
+return "C$";
+
+}
+
+
+/* ==========================
+   ACTUALIZAR PRECIO
+========================== */
+
+function updatePrice(){
+
+const precio =
+getPrice();
+
+const simbolo =
+getCurrencySymbol();
+
+
+document
+.getElementById("price")
+.textContent =
+simbolo + precio;
+
+
+document
+.getElementById("total")
+.textContent =
+simbolo + (precio * quantity);
+
+
+document
+.getElementById("currencyChosen")
+.textContent =
+"Moneda: " +
+(moneda === "USD"
+? "Dólares"
+: "Córdobas");
+
+}
+
+
+/* ==========================
+   CAMBIAR MONEDA
+========================== */
+
+function changeCurrency(currency){
+
+moneda = currency;
+
+
+document
+.getElementById("dollars")
+.classList
+.toggle(
+"active",
+currency === "USD"
+);
+
+
+document
+.getElementById("cordobas")
+.classList
+.toggle(
+"active",
+currency === "NIO"
+);
+
+
+updatePrice();
+
+}
+
+
+/* ==========================
+   CAMBIAR CAMISETA
+========================== */
+
+function shirt(x){
+
+camisa = x;
+
+lado = "front";
+
+
+document
+.getElementById("shirt1")
+.classList
+.toggle(
+"active",
+x === 1
+);
+
+
+document
+.getElementById("shirt2")
+.classList
+.toggle(
+"active",
+x === 2
+);
+
+
+document
+.getElementById("title")
+.textContent =
+"CAMISETA " + x;
+
+
+document
+.getElementById("productName")
+.textContent =
+camisetas[x].nombre;
+
+
+document
+.getElementById("front")
+.classList
+.add("active");
+
+
+document
+.getElementById("back")
+.classList
+.remove("active");
+
+
+document
+.getElementById("shirtImage")
+.src =
+camisetas[x].frente;
+
+
+}
+
+
+/* ==========================
+   FRENTE / ESPALDA
+========================== */
 
 function side(x){
-  lado=x;
-  document.getElementById("shirtImage").src=camisetas[camisa][x==="front"?"frente":"espalda"];
-  document.getElementById("front").classList.toggle("active",x==="front");
-  document.getElementById("back").classList.toggle("active",x==="back");
+
+lado = x;
+
+
+if(x === "front"){
+
+document
+.getElementById("shirtImage")
+.src =
+camisetas[camisa].frente;
+
 }
 
-function size(button,selectedSize){
-  document.querySelectorAll(".sizes button").forEach(b=>b.classList.remove("active"));
-  button.classList.add("active");
-  talla=selectedSize;
-  document.getElementById("chosen").textContent=
-    "Camiseta: "+camisetas[camisa].nombre+" | Talla: "+talla;
+else{
+
+document
+.getElementById("shirtImage")
+.src =
+camisetas[camisa].espalda;
+
 }
+
+
+document
+.getElementById("front")
+.classList
+.toggle(
+"active",
+x === "front"
+);
+
+
+document
+.getElementById("back")
+.classList
+.toggle(
+"active",
+x === "back"
+);
+
+}
+
+
+/* ==========================
+   TALLA
+========================== */
+
+function size(
+button,
+selectedSize
+){
+
+document
+.querySelectorAll(
+".sizes button"
+)
+.forEach(
+function(b){
+
+b.classList
+.remove("active");
+
+});
+
+
+button.classList
+.add("active");
+
+
+talla =
+selectedSize;
+
+
+document
+.getElementById("chosen")
+.textContent =
+
+"Camiseta: " +
+camisetas[camisa].nombre +
+" | Talla: " +
+talla;
+
+}
+
+
+/* ==========================
+   CARRITO
+========================== */
 
 function openCart(){
-  if(talla===""){
-    alert("Primero elige una talla.");
-    return;
-  }
-  document.getElementById("cart").classList.add("show");
-  document.getElementById("cart").scrollIntoView({behavior:"smooth"});
+
+if(talla === ""){
+
+alert(
+"Primero elige una talla."
+);
+
+return;
+
 }
+
+
+document
+.getElementById("cart")
+.classList
+.add("show");
+
+
+updatePrice();
+
+
+document
+.getElementById("cart")
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+}
+
+
+/* ==========================
+   CANTIDAD
+========================== */
 
 function changeQuantity(change){
-  quantity+=change;
-  if(quantity<1) quantity=1;
-  if(quantity>20) quantity=20;
 
-  document.getElementById("quantity").textContent=quantity;
-  document.getElementById("quantityText").textContent=quantity;
-  document.getElementById("total").textContent=quantity*price;
+quantity += change;
+
+
+if(quantity < 1){
+
+quantity = 1;
+
 }
+
+
+if(quantity > 20){
+
+quantity = 20;
+
+}
+
+
+document
+.getElementById("quantity")
+.textContent =
+quantity;
+
+
+document
+.getElementById("quantityText")
+.textContent =
+quantity;
+
+
+updatePrice();
+
+}
+
+
+/* ==========================
+   WHATSAPP
+========================== */
 
 function sendOrder(){
-  if(talla===""){
-    alert("Elige una talla.");
-    return;
-  }
 
-  const name=document.getElementById("name").value.trim();
-  if(name===""){
-    alert("Escribe tu nombre.");
-    return;
-  }
+if(talla === ""){
 
-  const payment=document.querySelector('input[name="payment"]:checked');
-  if(!payment){
-    alert("Elige una forma de pago.");
-    return;
-  }
+alert(
+"Elige una talla."
+);
 
-  const total=quantity*price;
+return;
 
-  const message=
-    "Hola, quiero comprar "+quantity+" camiseta"+
-    (quantity>1?"s":"")+" "+camisetas[camisa].nombre+" (frente y espalda)."+
-    "%0A%0A"+
-    "Nombre: "+encodeURIComponent(name)+
-    "%0ATalla: "+encodeURIComponent(talla)+
-    "%0ACantidad: "+quantity+
-    "%0AForma de pago: "+encodeURIComponent(payment.value)+
-    "%0ATotal: $"+total;
-
-  window.open("https://wa.me/"+whatsapp+"?text="+message,"_blank");
 }
+
+
+const name =
+document
+.getElementById("name")
+.value
+.trim();
+
+
+if(name === ""){
+
+alert(
+"Escribe tu nombre."
+);
+
+return;
+
+}
+
+
+const payment =
+document.querySelector(
+'input[name="payment"]:checked'
+);
+
+
+if(!payment){
+
+alert(
+"Elige una forma de pago."
+);
+
+return;
+
+}
+
+
+const total =
+getPrice() * quantity;
+
+
+const monedaTexto =
+moneda === "USD"
+? "Dólares"
+: "Córdobas";
+
+
+const simbolo =
+getCurrencySymbol();
+
+
+const message =
+
+"Hola, quiero comprar " +
+
+quantity +
+
+" camiseta" +
+
+(quantity > 1 ? "s" : "") +
+
+" " +
+
+camisetas[camisa].nombre +
+
+".%0A%0A" +
+
+"Nombre: " +
+
+encodeURIComponent(name) +
+
+"%0ATalla: " +
+
+encodeURIComponent(talla) +
+
+"%0ACantidad: " +
+
+quantity +
+
+"%0AMoneda: " +
+
+encodeURIComponent(monedaTexto) +
+
+"%0AForma de pago: " +
+
+encodeURIComponent(payment.value) +
+
+"%0ATotal: " +
+
+encodeURIComponent(
+simbolo + total
+);
+
+
+window.open(
+
+"https://wa.me/" +
+
+whatsapp +
+
+"?text=" +
+
+message,
+
+"_blank"
+
+);
+
+}
+
+
+/* ==========================
+   IMAGEN INICIAL
+========================== */
+
+document
+.getElementById("shirtImage")
+.src =
+camisetas[1].frente;
+
+
+updatePrice();
+
 </script>
+
 
 </body>
 </html>
