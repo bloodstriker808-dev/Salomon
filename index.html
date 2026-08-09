@@ -6,7 +6,7 @@
 <title>SALOMON - CAMISETAS</title>
 <style>
 body{margin:0;background:#070707;color:white;font-family:Arial;text-align:center}
-header{padding:18px;border-bottom:1px solid #222;position:sticky;top:0;background:#080808}
+header{padding:18px;border-bottom:1px solid #222;background:#080808;position:sticky;top:0}
 .logo{font-size:24px;font-weight:bold;letter-spacing:6px}
 main{max-width:900px;margin:auto;padding:25px 15px}
 .viewer{background:#000;border-radius:16px;overflow:hidden}
@@ -15,17 +15,25 @@ button{padding:13px 20px;margin:6px;border-radius:9px;border:1px solid #555;back
 .active,.buy{background:#d6a52c;color:#090909;border-color:#d6a52c}
 .price{font-size:28px;font-weight:bold}
 .sizes{display:flex;justify-content:center;flex-wrap:wrap}
-.order{display:none;background:#111;border:1px solid #333;padding:18px;margin:15px 0;border-radius:12px}
-.order.show{display:block}
-input{display:block;width:90%;max-width:400px;margin:8px auto;padding:12px;background:#171717;color:white;border:1px solid #444;border-radius:8px}
+.cart{display:none;background:#111;border:1px solid #333;padding:18px;margin-top:20px;border-radius:12px}
+.cart.show{display:block}
+.quantity{display:flex;justify-content:center;align-items:center;gap:15px;margin:20px}
+.quantity button{width:50px;font-size:22px}
+#quantity{font-size:22px;font-weight:bold}
+input{display:block;width:90%;max-width:400px;margin:10px auto;padding:12px;background:#171717;color:white;border:1px solid #444;border-radius:8px;box-sizing:border-box}
+.payment{margin:15px 0}
+.payment label{display:block;background:#171717;padding:12px;margin:8px auto;max-width:300px;border-radius:8px}
+.payment label input{display:inline;width:auto;margin:0 8px 0 0;padding:0}
+.total{font-size:22px;font-weight:bold}
 </style>
 </head>
 <body>
-<header><div class="logo">SALOMON</div></header>
-<main>
 
+<header><div class="logo">SALOMON</div></header>
+
+<main>
 <h1 id="title">CAMISETA 1</h1>
-<p>Elige la camisa y luego el frente o la espalda.</p>
+<p>Elige una camiseta y mira el frente y la espalda antes de comprar.</p>
 
 <div>
 <button id="shirt1" class="active" onclick="shirt(1)">CAMISA 1</button>
@@ -33,7 +41,7 @@ input{display:block;width:90%;max-width:400px;margin:8px auto;padding:12px;backg
 </div>
 
 <div class="viewer">
-<img id="shirtImage" src="camisa1-frente.png" alt="Camiseta">
+<img id="shirtImage" src="camisa1-frente.png" alt="Camiseta SALOMON">
 </div>
 
 <div>
@@ -42,7 +50,7 @@ input{display:block;width:90%;max-width:400px;margin:8px auto;padding:12px;backg
 </div>
 
 <h2 id="productName">Camiseta SALOMON 1</h2>
-<p class="price">$25</p>
+<p class="price">$25 por camiseta</p>
 
 <p><b>Elige tu talla:</b></p>
 <div class="sizes">
@@ -53,20 +61,40 @@ input{display:block;width:90%;max-width:400px;margin:8px auto;padding:12px;backg
 <button onclick="size(this,'XXL')">XXL</button>
 </div>
 
-<button class="buy" onclick="buy()">COMPRAR</button>
+<button class="buy" onclick="openCart()">COMPRAR</button>
 
-<div id="order" class="order">
-<p id="chosen">Elige una talla.</p>
-<input id="name" placeholder="Tu nombre">
-<button class="buy" onclick="send()">PEDIR POR WHATSAPP</button>
+<div id="cart" class="cart">
+<h2>Carrito</h2>
+<p id="chosen">Talla: No seleccionada</p>
+
+<h3>Cantidad</h3>
+<div class="quantity">
+<button onclick="changeQuantity(-1)">-</button>
+<span id="quantity">1</span>
+<button onclick="changeQuantity(1)">+</button>
 </div>
 
+<p>Cantidad de camisetas: <b id="quantityText">1</b></p>
+<p class="total">Total: $<span id="total">25</span></p>
+
+<input id="name" placeholder="Tu nombre">
+
+<h3>Forma de pago</h3>
+<div class="payment">
+<label><input type="radio" name="payment" value="Efectivo">Efectivo</label>
+<label><input type="radio" name="payment" value="Transferencia">Transferencia</label>
+</div>
+
+<button class="buy" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
+</div>
 </main>
 
 <script>
 let talla="";
+let quantity=1;
 let camisa=1;
 let lado="front";
+const price=25;
 const whatsapp="50557349700";
 
 const camisetas={
@@ -101,38 +129,65 @@ function shirt(x){
 function side(x){
   lado=x;
   document.getElementById("shirtImage").src=camisetas[camisa][x==="front"?"frente":"espalda"];
-
   document.getElementById("front").classList.toggle("active",x==="front");
   document.getElementById("back").classList.toggle("active",x==="back");
 }
 
-function size(b,x){
-  document.querySelectorAll(".sizes button").forEach(e=>e.classList.remove("active"));
-  b.classList.add("active");
-  talla=x;
-  document.getElementById("chosen").textContent="Talla seleccionada: "+x;
+function size(button,selectedSize){
+  document.querySelectorAll(".sizes button").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  talla=selectedSize;
+  document.getElementById("chosen").textContent=
+    "Camiseta: "+camisetas[camisa].nombre+" | Talla: "+talla;
 }
 
-function buy(){
-  if(!talla){alert("Primero elige una talla.");return}
-  document.getElementById("order").classList.add("show");
-  document.getElementById("order").scrollIntoView({behavior:"smooth"});
+function openCart(){
+  if(talla===""){
+    alert("Primero elige una talla.");
+    return;
+  }
+  document.getElementById("cart").classList.add("show");
+  document.getElementById("cart").scrollIntoView({behavior:"smooth"});
 }
 
-function send(){
-  if(!talla){alert("Elige una talla.");return}
+function changeQuantity(change){
+  quantity+=change;
+  if(quantity<1) quantity=1;
+  if(quantity>20) quantity=20;
 
-  const nombre=document.getElementById("name").value.trim();
-  if(!nombre){alert("Escribe tu nombre.");return}
-
-  const mensaje="Hola, quiero comprar una "+camisetas[camisa].nombre+
-    ".%0A%0ANombre: "+encodeURIComponent(nombre)+
-  "%0ATalla: "+encodeURIComponent(talla)+
-  "%0APrecio: $25";
-
-  window.open("https://wa.me/"+whatsapp+"?text="+mensaje,"_blank");
+  document.getElementById("quantity").textContent=quantity;
+  document.getElementById("quantityText").textContent=quantity;
+  document.getElementById("total").textContent=quantity*price;
 }
-</script>
 
-</body>
-</html>
+function sendOrder(){
+  if(talla===""){
+    alert("Elige una talla.");
+    return;
+  }
+
+  const name=document.getElementById("name").value.trim();
+  if(name===""){
+    alert("Escribe tu nombre.");
+    return;
+  }
+
+  const payment=document.querySelector('input[name="payment"]:checked');
+  if(!payment){
+    alert("Elige una forma de pago.");
+    return;
+  }
+
+  const total=quantity*price;
+
+  const message=
+    "Hola, quiero comprar "+quantity+" camiseta"+
+    (quantity>1?"s":"")+" "+camisetas[camisa].nombre+" (frente y espalda)."+
+    "%0A%0A"+
+    "Nombre: "+encodeURIComponent(name)+
+    "%0ATalla: "+encodeURIComponent(talla)+
+    "%0ACantidad: "+quantity+
+    "%0AForma de pago: "+encodeURIComponent(payment.value)+
+    "%0ATotal: $"+total;
+
+  
